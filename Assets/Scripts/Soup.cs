@@ -6,11 +6,13 @@ using UnityEngine;
 public class Soup : MonoBehaviour
 {
     private Color startColor;
+    public Animator animator;
 
     // Start is called before the first frame update
     void Start()
     {
         startColor = this.GetComponent<SpriteRenderer>().color;
+        animator = GetComponent<Animator>();
     }
 
     private IEnumerator ChangeColor(Color changeColor)
@@ -21,6 +23,7 @@ public class Soup : MonoBehaviour
         changeColor.r = (currentColor.r + changeColor.r) / 2f;
         changeColor.g = (currentColor.g + changeColor.g) / 2f;
         changeColor.b = (currentColor.b + changeColor.b) / 2f;
+        Debug.Log("Change Color " + changeColor);
         while (this.GetComponent<SpriteRenderer>().color != changeColor)
         {
             tick += Time.deltaTime * speed;
@@ -38,9 +41,14 @@ public class Soup : MonoBehaviour
 
     public void Collision(Color color)
     {
-        Debug.Log("Change Color " + color);
         StartCoroutine(ChangeColor(color));
+        //Splash();
         //this.GetComponent<SpriteRenderer>().color = color;
+    }
+
+    public void Splash()
+    {
+        //animator.SetTrigger("Splash");
     }
 
     public void RevertToStartColor()

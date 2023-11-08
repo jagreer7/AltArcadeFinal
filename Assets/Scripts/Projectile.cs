@@ -105,9 +105,8 @@ public class Projectile : MonoBehaviour
     {
         if (other.CompareTag("Soup"))
         {
-            // Call script method on enemy
             other.gameObject.GetComponent<Soup>().Collision(color);
-            //Destroy(gameObject);
+            Destroy(gameObject, 0.3f);
         }
     }
 
