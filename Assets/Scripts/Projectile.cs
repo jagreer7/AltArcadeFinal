@@ -106,7 +106,7 @@ public class Projectile : MonoBehaviour
         if (other.CompareTag("Soup"))
         {
             other.gameObject.GetComponent<Soup>().Collision(color);
-            Destroy(gameObject, 0.3f);
+            Destroy(gameObject, 0.05f);
         }
     }
 
