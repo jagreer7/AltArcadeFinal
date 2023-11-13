@@ -80,6 +80,7 @@ public class OrderSystem : MonoBehaviour
             if (orderCompleted == true) //Order is done and needs to switch
             {
                 //Randomize button items
+                /*
                 int random1 = Random.Range(0, IngredientsList.Count); //Pick a random index 
                 ing1 = Instantiate(IngredientsList[random1], new Vector3(-6, -4f, 0), Quaternion.identity); //Create the gameobject
                 OrderOptions.Add(ing1); //Add it to the list of option for the recipe
@@ -107,8 +108,10 @@ public class OrderSystem : MonoBehaviour
                 }
                 ing4 = Instantiate(IngredientsList[random4], new Vector3(6, -4f, 0), Quaternion.identity);
                 OrderOptions.Add(ing4);
+                */
 
                 //Set Order
+                /*
                 int orderRandom1 = Random.Range(0, OrderOptions.Count); //Pick a random from the list of order options (the buttons that are available to the player)
                 Order1 = OrderOptions[orderRandom1]; //Set for the check later
                 ord1 = Instantiate(Order1, new Vector3(-6, 1.2f, 0), Quaternion.identity); //Spawn the object in the recipe boxes
@@ -131,11 +134,35 @@ public class OrderSystem : MonoBehaviour
                 Order3 = OrderOptions[orderRandom3];
                 ord3 = Instantiate(Order3, new Vector3(-2, 1.2f, 0), Quaternion.identity);
                 ord3.gameObject.transform.localScale = new Vector3(1.5f, 1.5f, 0);
+                */
+
+                int orderRandom1 = Random.Range(0, IngredientsList.Count); //Pick a random from the list of order options (the buttons that are available to the player)
+                Order1 = IngredientsList[orderRandom1]; //Set for the check later
+                ord1 = Instantiate(Order1, new Vector3(-6, -3.5f, 0), Quaternion.identity); //Spawn the object in the recipe boxes
+                ord1.gameObject.transform.localScale = new Vector3(1.5f, 1.5f, 0); //Scale
+
+                int orderRandom2 = Random.Range(0, IngredientsList.Count);
+                while (orderRandom2 == orderRandom1)
+                {
+                    orderRandom2 = Random.Range(0, IngredientsList.Count);
+                }
+                Order2 = IngredientsList[orderRandom2];
+                ord2 = Instantiate(Order2, new Vector3(-4, -3.5f, 0), Quaternion.identity);
+                ord2.gameObject.transform.localScale = new Vector3(1.5f, 1.5f, 0);
+
+                int orderRandom3 = Random.Range(0, IngredientsList.Count);
+                while (orderRandom3 == orderRandom1 || orderRandom3 == orderRandom2)
+                {
+                    orderRandom3 = Random.Range(0, IngredientsList.Count);
+                }
+                Order3 = IngredientsList[orderRandom3];
+                ord3 = Instantiate(Order3, new Vector3(-2, -3.5f, 0), Quaternion.identity);
+                ord3.gameObject.transform.localScale = new Vector3(1.5f, 1.5f, 0);
 
                 // This code stops the order window prefabs from shooting by disabling their projectile script
-                ord1.GetComponent<Projectile>().enabled = !(ord1.GetComponent<Projectile>().enabled);
-                ord2.GetComponent<Projectile>().enabled = !(ord2.GetComponent<Projectile>().enabled);
-                ord3.GetComponent<Projectile>().enabled = !(ord3.GetComponent<Projectile>().enabled);
+                //ord1.GetComponent<Projectile>().enabled = !(ord1.GetComponent<Projectile>().enabled);
+                //ord2.GetComponent<Projectile>().enabled = !(ord2.GetComponent<Projectile>().enabled);
+                //ord3.GetComponent<Projectile>().enabled = !(ord3.GetComponent<Projectile>().enabled);
 
                 orderCompleted = false;
             }
@@ -147,6 +174,7 @@ public class OrderSystem : MonoBehaviour
                 // OrderOptions[3] = 'K'
 
                 //Check Keypresses
+                /*
                 if (Input.GetKeyDown("d"))
                 {
                     if (OrderOptions[0] == Order1 && Order1Completed == false)
@@ -291,6 +319,35 @@ public class OrderSystem : MonoBehaviour
                         StartCoroutine(Wait(0.6f));
                     }
                 }
+                */
+                if (Input.GetKeyDown(ord1.GetComponent<Ingredient>().GetKeyCode()))
+                {
+                    Order1Box.GetComponent<SpriteRenderer>().color = parchmentGreen;
+                    Order1Completed = true;
+                    int rnd = Random.Range(0, 6);
+                    Debug.Log("RANDOM: " + rnd);
+                    GetComponent<AudioSource>().PlayOneShot(successSounds[rnd]);
+                    ord1.GetComponent<Projectile>().Launch();
+                }
+                if (Input.GetKeyDown(ord2.GetComponent<Ingredient>().GetKeyCode()))
+                {
+                    Order2Box.GetComponent<SpriteRenderer>().color = parchmentGreen;
+                    Order2Completed = true;
+                    int rnd = Random.Range(0, 6);
+                    Debug.Log("RANDOM: " + rnd);
+                    GetComponent<AudioSource>().PlayOneShot(successSounds[rnd]);
+                    ord2.GetComponent<Projectile>().Launch();
+                }
+                if (Input.GetKeyDown(ord3.GetComponent<Ingredient>().GetKeyCode()))
+                {
+                    Order3Box.GetComponent<SpriteRenderer>().color = parchmentGreen;
+                    Order3Completed = true;
+                    int rnd = Random.Range(0, 6);
+                    Debug.Log("RANDOM: " + rnd);
+                    GetComponent<AudioSource>().PlayOneShot(successSounds[rnd]);
+                    ord3.GetComponent<Projectile>().Launch();
+                }
+
 
                 //Check if order is completed
                 if (Order1Completed == true && Order2Completed == true && Order3Completed == true)
@@ -308,10 +365,10 @@ public class OrderSystem : MonoBehaviour
                         Destroy(ord1);
                         Destroy(ord2);
                         Destroy(ord3);
-                        Destroy(ing1);
-                        Destroy(ing2);
-                        Destroy(ing3);
-                        Destroy(ing4);
+                        //Destroy(ing1);
+                        //Destroy(ing2);
+                        //Destroy(ing3);
+                        //Destroy(ing4);
 
                         //Reset OrderBox Colors
                         Order1Box.GetComponent<SpriteRenderer>().color = parchmentRed;
