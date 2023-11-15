@@ -65,6 +65,9 @@ public class OrderSystem : MonoBehaviour
     [SerializeField] private float countdownTimer = 120;
     [SerializeField] private TextMeshProUGUI TimerText;
 
+    private bool stirred = false;
+    [SerializeField] private GameObject Stir;
+
     void Start()
     {
         //Set the initial score (for the UI)
@@ -146,7 +149,7 @@ public class OrderSystem : MonoBehaviour
 
                     int orderRandom1 = Random.Range(0, IngredientsList.Count); //Pick a random from the list of order options (the buttons that are available to the player)
                     Order1 = IngredientsList[orderRandom1]; //Set for the check later
-                    ord1 = Instantiate(Order1, new Vector3(-6, -3.5f, 0), Quaternion.identity); //Spawn the object in the recipe boxes
+                    ord1 = Instantiate(Order1, new Vector3(-7, -0.75f, 0), Quaternion.identity); //Spawn the object in the recipe boxes
                     ord1.gameObject.transform.localScale = new Vector3(1.5f, 1.5f, 0); //Scale
 
                     int orderRandom2 = Random.Range(0, IngredientsList.Count);
@@ -155,7 +158,7 @@ public class OrderSystem : MonoBehaviour
                         orderRandom2 = Random.Range(0, IngredientsList.Count);
                     }
                     Order2 = IngredientsList[orderRandom2];
-                    ord2 = Instantiate(Order2, new Vector3(-4, -3.5f, 0), Quaternion.identity);
+                    ord2 = Instantiate(Order2, new Vector3(-5, -0.75f, 0), Quaternion.identity);
                     ord2.gameObject.transform.localScale = new Vector3(1.5f, 1.5f, 0);
 
                     int orderRandom3 = Random.Range(0, IngredientsList.Count);
@@ -164,7 +167,7 @@ public class OrderSystem : MonoBehaviour
                         orderRandom3 = Random.Range(0, IngredientsList.Count);
                     }
                     Order3 = IngredientsList[orderRandom3];
-                    ord3 = Instantiate(Order3, new Vector3(-2, -3.5f, 0), Quaternion.identity);
+                    ord3 = Instantiate(Order3, new Vector3(-3, -0.75f, 0), Quaternion.identity);
                     ord3.gameObject.transform.localScale = new Vector3(1.5f, 1.5f, 0);
 
                     // This code stops the order window prefabs from shooting by disabling their projectile script
@@ -176,10 +179,19 @@ public class OrderSystem : MonoBehaviour
                 }
                 else //Order is not yet done
                 {
-                    // OrderOptions[0] = 'D'
-                    // OrderOptions[1] = 'F'
-                    // OrderOptions[2] = 'J'
-                    // OrderOptions[3] = 'K'
+                    /*
+                    Teeth = t
+                    Frog = f
+                    Toe = g (for gross)
+                    Worms = m
+                    Herbs = h
+                    Eye = e
+                    Mushroom = m
+
+                    Fire = space
+                    Stir = s
+                    */
+                    
 
                     //Check Keypresses
                     /*
@@ -358,62 +370,86 @@ public class OrderSystem : MonoBehaviour
 
 
                     //Check if order is completed
+                    
                     if (Order1Completed == true && Order2Completed == true && Order3Completed == true)
                     {
-                        Debug.Log("Stalling");
+                        //Play an animation that shows that the user needs to stir
+                        Stir.GetComponent<SpriteRenderer>().enabled = true;
+                        Stir.GetComponent<Animator>().enabled = true;
 
-                        timer += Time.deltaTime;
-
-                        if (timer >= StallDelay)
+                        //Player needs to press space to stir the pot to move on
+                        if (Input.GetKeyDown(KeyCode.S))
                         {
-                            soup.GetComponent<Soup>().RevertToStartColor();
-                            OrderOptions.Clear();
+                            stirred = true;
+                        }
 
-                            //Destroy Objects
-                            Destroy(ord1);
-                            Destroy(ord2);
-                            Destroy(ord3);
-                            //Destroy(ing1);
-                            //Destroy(ing2);
-                            //Destroy(ing3);
-                            //Destroy(ing4);
+                        if (stirred == true)
+                        {
+                            Debug.Log("Stalling");
 
-                            //Reset OrderBox Colors
-                            Order1Box.GetComponent<SpriteRenderer>().color = parchmentRed;
-                            Order2Box.GetComponent<SpriteRenderer>().color = parchmentRed;
-                            Order3Box.GetComponent<SpriteRenderer>().color = parchmentRed;
+                            timer += Time.deltaTime;
 
-                            //Reset order completion
-                            Order1Completed = false;
-                            Order2Completed = false;
-                            Order3Completed = false;
+                            if (timer >= StallDelay)
+                            {
+                                soup.GetComponent<Soup>().RevertToStartColor();
+                                OrderOptions.Clear();
 
-                            //Add to score
-                            Score += 100;
-                            ScoreText.text = "SCORE: " + Score;
+                                //Destroy Objects
+                                Destroy(ord1);
+                                Destroy(ord2);
+                                Destroy(ord3);
+                                //Destroy(ing1);
+                                //Destroy(ing2);
+                                //Destroy(ing3);
+                                //Destroy(ing4);
 
-                            //Reset the timer
-                            timer = 0;
+                                //Reset OrderBox Colors
+                                Order1Box.GetComponent<SpriteRenderer>().color = parchmentRed;
+                                Order2Box.GetComponent<SpriteRenderer>().color = parchmentRed;
+                                Order3Box.GetComponent<SpriteRenderer>().color = parchmentRed;
 
-                            orderCompleted = true;
+                                //Reset order completion
+                                Order1Completed = false;
+                                Order2Completed = false;
+                                Order3Completed = false;
+
+                                //Add to score
+                                Score += 100;
+                                ScoreText.text = "SCORE: " + Score;
+
+                                //Reset the timer
+                                timer = 0;
+
+                                //Reset Stirred
+                                stirred = false;
+                                Stir.GetComponent<SpriteRenderer>().enabled = false;
+                                Stir.GetComponent<Animator>().enabled = false;
+
+                                orderCompleted = true;
+
+                                Debug.Log("Done Stalling");
+                            }
+                        
                         }
                     }
                 }
             }
-            else
+            else //When the Random Fire Event happens
             {
                 Debug.Log("FIRE TIME");
+                //show the fire event
                 Fire.GetComponent<SpriteRenderer>().enabled = true;
                 Fire.GetComponent<Animator>().enabled = true;
 
                 //Player has to reset the fire timer
                 if (Input.GetKeyUp(KeyCode.Space))
                 {
+                    //Play the end of the fire animation
                     Fire.GetComponent<Animator>().SetBool("End", true);
                     StartCoroutine(WaitFire(0.6f));
 
+                    //Resart the fire timer
                     randomEventTimer = Random.Range(30, 60);
-
                 }
             }
         }
