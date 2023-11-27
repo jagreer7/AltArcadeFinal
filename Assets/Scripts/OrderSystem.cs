@@ -38,6 +38,9 @@ public class OrderSystem : MonoBehaviour
     private GameObject ord1;
     private GameObject ord2;
     private GameObject ord3;
+    private GameObject ord1action;
+    private GameObject ord2action;
+    private GameObject ord3action;
 
     [SerializeField] private GameObject Order1Box;
     [SerializeField] private GameObject Order2Box;
@@ -67,6 +70,12 @@ public class OrderSystem : MonoBehaviour
 
     private bool stirred = false;
     [SerializeField] private GameObject Stir;
+
+
+    [SerializeField] private TextMeshProUGUI Action1;
+    [SerializeField] private TextMeshProUGUI Action2;
+    [SerializeField] private TextMeshProUGUI Action3;
+
 
     void Start()
     {
@@ -150,6 +159,8 @@ public class OrderSystem : MonoBehaviour
                     int orderRandom1 = Random.Range(0, IngredientsList.Count); //Pick a random from the list of order options (the buttons that are available to the player)
                     Order1 = IngredientsList[orderRandom1]; //Set for the check later
                     ord1 = Instantiate(Order1, new Vector3(-7, -0.75f, 0), Quaternion.identity); //Spawn the object in the recipe boxes
+                    Action1.text = ord1.GetComponent<Ingredient>().GetActionText(); //Set the action Text
+                    ord1action = Instantiate(ord1.GetComponent<Ingredient>().GetAction(), new Vector3(-7, -3.438f, 0), Quaternion.identity); //Spawn the action in the action boxes
                     ord1.gameObject.transform.localScale = new Vector3(1.5f, 1.5f, 0); //Scale
 
                     int orderRandom2 = Random.Range(0, IngredientsList.Count);
@@ -159,6 +170,8 @@ public class OrderSystem : MonoBehaviour
                     }
                     Order2 = IngredientsList[orderRandom2];
                     ord2 = Instantiate(Order2, new Vector3(-5, -0.75f, 0), Quaternion.identity);
+                    Action2.text = ord2.GetComponent<Ingredient>().GetActionText();
+                    ord2action = Instantiate(ord2.GetComponent<Ingredient>().GetAction(), new Vector3(-5, -3.438f, 0), Quaternion.identity);
                     ord2.gameObject.transform.localScale = new Vector3(1.5f, 1.5f, 0);
 
                     int orderRandom3 = Random.Range(0, IngredientsList.Count);
@@ -168,6 +181,8 @@ public class OrderSystem : MonoBehaviour
                     }
                     Order3 = IngredientsList[orderRandom3];
                     ord3 = Instantiate(Order3, new Vector3(-3, -0.75f, 0), Quaternion.identity);
+                    Action3.text = ord3.GetComponent<Ingredient>().GetActionText();
+                    ord3action = Instantiate(ord3.GetComponent<Ingredient>().GetAction(), new Vector3(-3, -3.438f, 0), Quaternion.identity);
                     ord3.gameObject.transform.localScale = new Vector3(1.5f, 1.5f, 0);
 
                     // This code stops the order window prefabs from shooting by disabling their projectile script
@@ -398,6 +413,9 @@ public class OrderSystem : MonoBehaviour
                                 Destroy(ord1);
                                 Destroy(ord2);
                                 Destroy(ord3);
+                                Destroy(ord1action);
+                                Destroy(ord2action);
+                                Destroy(ord3action);
                                 //Destroy(ing1);
                                 //Destroy(ing2);
                                 //Destroy(ing3);

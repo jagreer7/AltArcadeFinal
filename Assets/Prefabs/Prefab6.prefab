@@ -77,7 +77,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 6
+  m_SortingOrder: 11
   m_Sprite: {fileID: -9214607303509410058, guid: 291f02020aab47a408334e8ad6dcafbf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -234,3 +234,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   KeyCode: h
+  Action: {fileID: 8092000125357999066, guid: 3810f91cac6282947ae9330fa3ad29c6, type: 3}
+  ActionText: Shake

@@ -33,7 +33,7 @@ public class Projectile : MonoBehaviour
         speed *= 2;
         transform.position = Vector3.MoveTowards(transform.position, introTarget.position, speed * Time.deltaTime); */
 
-        float duration = 1.8f;
+        float duration = 1.4f;
         float time = 0f;
         Vector3 p = start.position;
         //p.y += 1.6f;
@@ -48,7 +48,7 @@ public class Projectile : MonoBehaviour
             float linearT = time / duration;
             float heightT = curve.Evaluate(linearT);
 
-            float height = Mathf.Lerp(0f, 5f, heightT); // change 3 to however tall you want the arc to be
+            float height = Mathf.Lerp(0f, 4f, heightT); // change 3 to however tall you want the arc to be
             transform.position = Vector2.Lerp(p, end, linearT) + new Vector2(0f, height);
             Vector3 dir = end - transform.position;
             //dir.y += 3;

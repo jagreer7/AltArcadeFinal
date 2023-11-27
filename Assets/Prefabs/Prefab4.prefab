@@ -77,7 +77,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 6
+  m_SortingOrder: 11
   m_Sprite: {fileID: 7590372318237660686, guid: af253b5ef283e433e9a277e160add37e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -234,3 +234,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   KeyCode: f
+  Action: {fileID: 8092000125357999066, guid: e9bab125002ccdb41b252a667118db51, type: 3}
+  ActionText: Toss
