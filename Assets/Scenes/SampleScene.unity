@@ -195,7 +195,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: f309694d5b3de744092f655e6246d3a1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -347,7 +347,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -46.7, y: -149.29999}
+  m_AnchoredPosition: {x: -60.5, y: -157.90001}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &154105556
@@ -1207,7 +1207,7 @@ GameObject:
   - component: {fileID: 639460091}
   - component: {fileID: 639460090}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: UI Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1245,7 +1245,7 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 2.51
-  m_ReferenceResolution: {x: 900, y: 1080}
+  m_ReferenceResolution: {x: 900, y: 1600}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -1274,7 +1274,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 5
+  m_SortingOrder: 10
   m_TargetDisplay: 0
 --- !u!224 &639460093
 RectTransform:
@@ -2441,7 +2441,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 5
   m_Sprite: {fileID: -1399483708853889868, guid: 71d26ecf923494b43bfc3fa6d738f1ad, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -2502,7 +2502,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -143.5, y: -149.29999}
+  m_AnchoredPosition: {x: -157.3, y: -157.9}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1677169036
@@ -2663,7 +2663,7 @@ MonoBehaviour:
   StallDelay: 2
   randomEventTimer: 0
   Fire: {fileID: 971063699}
-  countdownTimer: 120
+  countdownTimer: 240
   TimerText: {fileID: 1748237881}
   Stir: {fileID: 634418582}
   Action1: {fileID: 1753725207}
@@ -2910,7 +2910,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'TIME LEFT: 120'
+  m_text: 'TIME LEFT: '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3d387e22069519a4b83cf8c95b1215a6, type: 2}
   m_sharedMaterial: {fileID: -7014448531372366581, guid: 3d387e22069519a4b83cf8c95b1215a6, type: 2}
@@ -3021,7 +3021,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -239.6, y: -149.3}
+  m_AnchoredPosition: {x: -253.4, y: -157.90002}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1753725207
@@ -3815,6 +3815,7 @@ SceneRoots:
   - {fileID: 519420032}
   - {fileID: 1695745022}
   - {fileID: 1239775401}
+  - {fileID: 639460093}
   - {fileID: 131612000}
   - {fileID: 1417360416}
   - {fileID: 496601943}
@@ -3823,7 +3824,6 @@ SceneRoots:
   - {fileID: 1792307185}
   - {fileID: 1882597088}
   - {fileID: 1346063051}
-  - {fileID: 639460093}
   - {fileID: 1605436897}
   - {fileID: 1812831929}
   - {fileID: 1954120897}
