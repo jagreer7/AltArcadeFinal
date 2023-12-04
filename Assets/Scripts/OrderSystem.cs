@@ -5,6 +5,7 @@ using TMPro;
 using Unity.IO.LowLevel.Unsafe;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.SocialPlatforms.Impl;
 
 public class OrderSystem : MonoBehaviour
@@ -12,6 +13,9 @@ public class OrderSystem : MonoBehaviour
     [SerializeField] List<GameObject> IngredientsList;
     [SerializeField] List<GameObject> OrderOptions;
     [SerializeField] private GameObject soup;
+
+    public PostProcessVolume volume;
+    private Vignette vignette = null;
 
     AudioSource audioSource;
     public AudioClip error;
@@ -58,6 +62,8 @@ public class OrderSystem : MonoBehaviour
 
     private int Score = 0;
 
+    private int someValue = 0;
+
     private Color parchmentGreen = new Color32(255, 231, 76, 255);
     private Color parchmentRed = new Color32(147, 123, 95, 255);
     private Color parchmentFail = new Color32(255, 123, 95, 255);
@@ -76,6 +82,8 @@ public class OrderSystem : MonoBehaviour
     [SerializeField] private TextMeshProUGUI Action2;
     [SerializeField] private TextMeshProUGUI Action3;
 
+    [SerializeField] private GameObject fireAttention;
+
 
     void Start()
     {
@@ -85,13 +93,15 @@ public class OrderSystem : MonoBehaviour
 
         //Random Event Timer
         randomEventTimer = Random.Range(30, 60);
-        TimerText.text = "TIME LEFT: " + Mathf.Floor(countdownTimer);
+        TimerText.text = "TOTAL TIME LEFT: " + Mathf.Floor(countdownTimer);
+
+        volume.profile.TryGetSettings(out vignette);
     }
 
     void Update()
     {
         countdownTimer -= Time.deltaTime;
-        TimerText.text = "TIME LEFT: " + Mathf.Floor(countdownTimer);
+        TimerText.text = "TOTAL TIME LEFT: " + Mathf.Floor(countdownTimer);
         if (countdownTimer > 0)
         {
             if (randomEventTimer > 0) //Time for random event
@@ -458,6 +468,11 @@ public class OrderSystem : MonoBehaviour
                 //show the fire event
                 Fire.GetComponent<SpriteRenderer>().enabled = true;
                 Fire.GetComponent<Animator>().enabled = true;
+                someValue++;
+
+                fireAttention.GetComponent<SpriteRenderer>().enabled = true;
+
+                vignette.intensity.value = 0.3f * Mathf.Sin(0.02f* (someValue + (1.5f * 3.14159f) - Time.deltaTime)) + 0.3f;
 
                 //Player has to reset the fire timer
                 if (Input.GetKeyUp(KeyCode.Space))
@@ -465,6 +480,11 @@ public class OrderSystem : MonoBehaviour
                     //Play the end of the fire animation
                     Fire.GetComponent<Animator>().SetBool("End", true);
                     StartCoroutine(WaitFire(0.6f));
+
+                    someValue = 0;
+                    vignette.intensity.value = 0;
+
+                    fireAttention.GetComponent<SpriteRenderer>().enabled = false;
 
                     //Resart the fire timer
                     randomEventTimer = Random.Range(30, 60);
