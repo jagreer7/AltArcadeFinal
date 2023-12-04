@@ -95,7 +95,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638372957048398870
+  platformSettingsDirtyTick: 638372969099392170
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -130,7 +130,7 @@ ScriptedImporter:
       y: 4
       width: 62
       height: 54
-    spriteID: 658d9b412adc542828109d9432acbc2d
+    spriteID: da6c3f414a47e4c6b8065839879d425f
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -150,7 +150,7 @@ ScriptedImporter:
       y: 4
       width: 62
       height: 54
-    spriteID: 3115b4439214a4c5991c03a71838e88b
+    spriteID: 04bdf67e317704d989a9b8953ecd77c1
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -170,7 +170,7 @@ ScriptedImporter:
       y: 4
       width: 62
       height: 54
-    spriteID: 43d25be0df159404d86a63be059400ac
+    spriteID: 9928fc5df66de496d8984bdf74dadef9
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -190,7 +190,7 @@ ScriptedImporter:
       y: 66
       width: 62
       height: 54
-    spriteID: cd5100451c2bb48fc9d6572a4cd633bf
+    spriteID: 57b502c95163a408b9e3a6f275485de3
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -210,7 +210,7 @@ ScriptedImporter:
       y: 66
       width: 62
       height: 54
-    spriteID: dc02591196c5242cc8a83bf067c9e440
+    spriteID: 3c66e41a1ad96479ab3d03e0f3563563
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -230,7 +230,7 @@ ScriptedImporter:
       y: 66
       width: 62
       height: 54
-    spriteID: c09eb6ebdcf2a4e178dd1f4b532063b8
+    spriteID: e13821fb486ec48ccaa8c2ad56b10e67
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -250,7 +250,7 @@ ScriptedImporter:
       y: 128
       width: 62
       height: 54
-    spriteID: da693d527cd6b4c6dbcc2a01cbb2b757
+    spriteID: 1eeb0171cde4a4279a4282519ddc26b1
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -270,7 +270,7 @@ ScriptedImporter:
       y: 128
       width: 62
       height: 54
-    spriteID: a47354b63167642d799bda6c0e3b46dc
+    spriteID: f859adbcd146544c38d3652610bbe45a
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -290,7 +290,7 @@ ScriptedImporter:
       y: 128
       width: 62
       height: 54
-    spriteID: 48390f149c79c4730b44d9e7546d4545
+    spriteID: 281f4d2c18429438aa074e794d19c7e6
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -310,7 +310,7 @@ ScriptedImporter:
       y: 190
       width: 62
       height: 54
-    spriteID: 7c9d71415889b45bb899bd7897e16446
+    spriteID: 98abdcf07e9614128912f9927fb0c694
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -335,7 +335,7 @@ ScriptedImporter:
         y: 8
         width: 62
         height: 54
-      spriteId: 658d9b412adc542828109d9432acbc2d
+      spriteId: da6c3f414a47e4c6b8065839879d425f
     - name: Witch_Smile_Frame_1
       frameIndex: 1
       cellRect:
@@ -343,7 +343,7 @@ ScriptedImporter:
         y: 8
         width: 62
         height: 54
-      spriteId: 3115b4439214a4c5991c03a71838e88b
+      spriteId: 04bdf67e317704d989a9b8953ecd77c1
     - name: Witch_Smile_Frame_2
       frameIndex: 2
       cellRect:
@@ -351,7 +351,7 @@ ScriptedImporter:
         y: 8
         width: 62
         height: 54
-      spriteId: 43d25be0df159404d86a63be059400ac
+      spriteId: 9928fc5df66de496d8984bdf74dadef9
     - name: Witch_Smile_Frame_3
       frameIndex: 3
       cellRect:
@@ -359,7 +359,7 @@ ScriptedImporter:
         y: 8
         width: 62
         height: 54
-      spriteId: cd5100451c2bb48fc9d6572a4cd633bf
+      spriteId: 57b502c95163a408b9e3a6f275485de3
     - name: Witch_Smile_Frame_4
       frameIndex: 4
       cellRect:
@@ -367,7 +367,7 @@ ScriptedImporter:
         y: 8
         width: 62
         height: 54
-      spriteId: dc02591196c5242cc8a83bf067c9e440
+      spriteId: 3c66e41a1ad96479ab3d03e0f3563563
     - name: Witch_Smile_Frame_5
       frameIndex: 5
       cellRect:
@@ -375,7 +375,7 @@ ScriptedImporter:
         y: 8
         width: 62
         height: 54
-      spriteId: c09eb6ebdcf2a4e178dd1f4b532063b8
+      spriteId: e13821fb486ec48ccaa8c2ad56b10e67
     - name: Witch_Smile_Frame_6
       frameIndex: 6
       cellRect:
@@ -383,7 +383,7 @@ ScriptedImporter:
         y: 8
         width: 62
         height: 54
-      spriteId: da693d527cd6b4c6dbcc2a01cbb2b757
+      spriteId: 1eeb0171cde4a4279a4282519ddc26b1
     - name: Witch_Smile_Frame_7
       frameIndex: 7
       cellRect:
@@ -391,7 +391,7 @@ ScriptedImporter:
         y: 8
         width: 62
         height: 54
-      spriteId: a47354b63167642d799bda6c0e3b46dc
+      spriteId: f859adbcd146544c38d3652610bbe45a
     - name: Witch_Smile_Frame_8
       frameIndex: 8
       cellRect:
@@ -399,7 +399,7 @@ ScriptedImporter:
         y: 8
         width: 62
         height: 54
-      spriteId: 48390f149c79c4730b44d9e7546d4545
+      spriteId: 281f4d2c18429438aa074e794d19c7e6
     - name: Witch_Smile_Frame_9
       frameIndex: 9
       cellRect:
@@ -407,7 +407,7 @@ ScriptedImporter:
         y: 8
         width: 62
         height: 54
-      spriteId: 7c9d71415889b45bb899bd7897e16446
+      spriteId: 98abdcf07e9614128912f9927fb0c694
     linkedCells: []
     parentIndex: -1
   platformSettings:
