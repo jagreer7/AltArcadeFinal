@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using TMPro;
 using Unity.IO.LowLevel.Unsafe;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
@@ -19,6 +20,8 @@ public class OrderSystem : MonoBehaviour
 
     AudioSource audioSource;
     public AudioClip error;
+    public AudioClip complete;
+    public AudioClip fireClip;
     public AudioClip[] successSounds;
 
     private bool orderCompleted = true;
@@ -56,6 +59,8 @@ public class OrderSystem : MonoBehaviour
     [SerializeField] private TextMeshProUGUI ScoreText;
 
     [SerializeField] private GameObject soupObject;
+    [SerializeField] private GameObject witch;
+    private bool fireBool = false;
 
     [SerializeField] private float StallDelay;
     private float timer = 0;
@@ -398,6 +403,7 @@ public class OrderSystem : MonoBehaviour
                     
                     if (Order1Completed == true && Order2Completed == true && Order3Completed == true)
                     {
+
                         //Play an animation that shows that the user needs to stir
                         Stir.GetComponent<SpriteRenderer>().enabled = true;
                         Stir.GetComponent<Animator>().enabled = true;
@@ -406,12 +412,13 @@ public class OrderSystem : MonoBehaviour
                         if (Input.GetKeyDown(KeyCode.S))
                         {
                             stirred = true;
+                            GetComponent<AudioSource>().PlayOneShot(complete);
+                            Debug.Log("Stalling");
+                            witch.GetComponent<Animator>().SetTrigger("complete");
                         }
 
                         if (stirred == true)
                         {
-                            Debug.Log("Stalling");
-
                             timer += Time.deltaTime;
 
                             if (timer >= StallDelay)
@@ -465,7 +472,13 @@ public class OrderSystem : MonoBehaviour
             else //When the Random Fire Event happens
             {
                 Debug.Log("FIRE TIME");
-                //show the fire event
+                if (fireBool == false)
+                {
+                    GetComponent<AudioSource>().clip = fireClip;
+                    GetComponent<AudioSource>().Play();
+                    GetComponent<AudioSource>().loop = true;
+                    fireBool = true;
+                }
                 Fire.GetComponent<SpriteRenderer>().enabled = true;
                 Fire.GetComponent<Animator>().enabled = true;
                 someValue++;
@@ -477,9 +490,13 @@ public class OrderSystem : MonoBehaviour
                 //Player has to reset the fire timer
                 if (Input.GetKeyUp(KeyCode.Space))
                 {
+                    fireBool = false;
                     //Play the end of the fire animation
                     Fire.GetComponent<Animator>().SetBool("End", true);
                     StartCoroutine(WaitFire(0.6f));
+                    GetComponent<AudioSource>().clip = null;
+                    GetComponent<AudioSource>().Stop();
+                    GetComponent<AudioSource>().loop = false;
 
                     someValue = 0;
                     vignette.intensity.value = 0;
