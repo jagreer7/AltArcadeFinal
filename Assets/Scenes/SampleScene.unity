@@ -2841,7 +2841,7 @@ MonoBehaviour:
   ScoreText: {fileID: 1801271527}
   soupObject: {fileID: 0}
   witch: {fileID: 1118144671}
-  StallDelay: 2
+  StallDelay: 1.2
   randomEventTimer: 0
   Fire: {fileID: 971063699}
   countdownTimer: 180
@@ -2851,6 +2851,9 @@ MonoBehaviour:
   Action2: {fileID: 1677169036}
   Action3: {fileID: 154105556}
   fireAttention: {fileID: 332443552}
+  stirCount: 0
+  stirLimit: 12
+  Cauldron: {fileID: 131611998}
 --- !u!114 &1695745021
 MonoBehaviour:
   m_ObjectHideFlags: 0

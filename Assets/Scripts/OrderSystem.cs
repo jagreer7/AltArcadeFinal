@@ -6,6 +6,7 @@ using Unity.IO.LowLevel.Unsafe;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.SocialPlatforms.Impl;
 
@@ -89,6 +90,41 @@ public class OrderSystem : MonoBehaviour
 
     [SerializeField] private GameObject fireAttention;
 
+    StirControls controls;
+    private bool UpBool;
+    private bool DownBool;
+    private bool LeftBool;
+    private bool RightBool;
+
+    private bool UpBoolChecker = true;
+    private bool DownBoolChecker = true;
+    private bool LeftBoolChecker = true;
+    private bool RightBoolChecker = true;
+
+    [SerializeField] private int stirCount;
+    [SerializeField] private int stirLimit = 12;
+
+    [SerializeField] private GameObject Cauldron;
+    private bool isNotStirrin = true;
+
+    private void Awake()
+    {
+        controls = new StirControls();
+
+        controls.Stir.Up.performed += ctx => UpBool = true;
+        controls.Stir.Up.canceled += ctx => UpBool = false;
+
+        controls.Stir.Down.performed += ctx => DownBool = true;
+        controls.Stir.Down.canceled += ctx => DownBool = false;
+
+        controls.Stir.Left.performed += ctx => LeftBool = true;
+        controls.Stir.Left.canceled += ctx => LeftBool = false;
+
+        controls.Stir.Right.performed += ctx => RightBool = true;
+        controls.Stir.Right.canceled += ctx => RightBool = false;
+
+        controls.Stir.Enable();
+    }
 
     void Start()
     {
@@ -408,8 +444,56 @@ public class OrderSystem : MonoBehaviour
                         Stir.GetComponent<SpriteRenderer>().enabled = true;
                         Stir.GetComponent<Animator>().enabled = true;
 
-                        //Player needs to press space to stir the pot to move on
-                        if (Input.GetKeyDown(KeyCode.S))
+                        //Stirring code
+                        if ((UpBool == true || DownBool == true || LeftBool == true || RightBool == true) && isNotStirrin == true)
+                        {
+                            Cauldron.GetComponent<Animator>().SetBool("Stirrin", true);
+                            isNotStirrin = false;
+                        }
+
+                        if (UpBool == true)
+                        {
+                            Debug.Log("up");
+                            if (UpBoolChecker == true)
+                            {
+                                Debug.Log("upcheck");
+                                UpBoolChecker = false;
+                                DownBoolChecker = true;
+                                stirCount++;
+                            }
+                        }
+                        if (DownBool == true)
+                        {
+                            Debug.Log("down");
+                            if (DownBoolChecker == true)
+                            {
+                                Debug.Log("downcheck");
+                                UpBoolChecker = true;
+                                DownBoolChecker = false;
+                                stirCount++;
+                            }
+                        }
+                        if (LeftBool == true)
+                        {
+                            Debug.Log("left");
+                            if (LeftBoolChecker == true)
+                            {
+                                LeftBoolChecker = false;
+                                RightBoolChecker = true;
+                                stirCount++;
+                            }
+                        }
+                        if (RightBool == true)
+                        {
+                            Debug.Log("right");
+                            if (RightBoolChecker == true)
+                            {
+                                RightBoolChecker = false;
+                                LeftBoolChecker = true;
+                                stirCount++;
+                            }
+                        }
+                        if (stirCount == stirLimit)
                         {
                             stirred = true;
                             GetComponent<AudioSource>().PlayOneShot(complete);
@@ -420,7 +504,6 @@ public class OrderSystem : MonoBehaviour
                         if (stirred == true)
                         {
                             timer += Time.deltaTime;
-
                             if (timer >= StallDelay)
                             {
                                 soup.GetComponent<Soup>().RevertToStartColor();
@@ -461,6 +544,10 @@ public class OrderSystem : MonoBehaviour
                                 Stir.GetComponent<Animator>().enabled = false;
 
                                 orderCompleted = true;
+
+                                stirCount = 0;
+                                isNotStirrin = true;
+                                Cauldron.GetComponent<Animator>().SetBool("Stirrin", false);
 
                                 Debug.Log("Done Stalling");
                             }
