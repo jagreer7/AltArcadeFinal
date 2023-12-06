@@ -83,6 +83,7 @@ public class OrderSystem : MonoBehaviour
     private bool stirred = false;
     [SerializeField] private GameObject Stir;
 
+    private bool completePlayed = false;
 
     [SerializeField] private TextMeshProUGUI Action1;
     [SerializeField] private TextMeshProUGUI Action2;
@@ -496,7 +497,13 @@ public class OrderSystem : MonoBehaviour
                         if (stirCount == stirLimit)
                         {
                             stirred = true;
-                            GetComponent<AudioSource>().PlayOneShot(complete);
+                            if (!completePlayed) 
+                            {
+                                GetComponent<AudioSource>().PlayOneShot(complete);
+                                completePlayed = true;
+                            }
+                          
+                            
                             Debug.Log("Stalling");
                             witch.GetComponent<Animator>().SetTrigger("complete");
                         }
@@ -550,6 +557,7 @@ public class OrderSystem : MonoBehaviour
                                 Cauldron.GetComponent<Animator>().SetBool("Stirrin", false);
 
                                 Debug.Log("Done Stalling");
+                                completePlayed = false;
                             }
                         
                         }
