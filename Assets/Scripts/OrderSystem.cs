@@ -8,6 +8,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering.PostProcessing;
+using UnityEngine.SceneManagement;
 using UnityEngine.SocialPlatforms.Impl;
 
 public class OrderSystem : MonoBehaviour
@@ -15,6 +16,7 @@ public class OrderSystem : MonoBehaviour
     [SerializeField] List<GameObject> IngredientsList;
     [SerializeField] List<GameObject> OrderOptions;
     [SerializeField] private GameObject soup;
+    [SerializeField] private string endScene;
 
     public PostProcessVolume volume;
     private Vignette vignette = null;
@@ -26,6 +28,7 @@ public class OrderSystem : MonoBehaviour
     public AudioClip[] successSounds;
 
     private bool orderCompleted = true;
+
 
     private GameObject ingredient1;
     private GameObject ingredient2;
@@ -66,7 +69,7 @@ public class OrderSystem : MonoBehaviour
     [SerializeField] private float StallDelay;
     private float timer = 0;
 
-    private int Score = 0;
+    [SerializeField] private int Score = 0;
 
     private int someValue = 0;
 
@@ -142,10 +145,16 @@ public class OrderSystem : MonoBehaviour
 
     void Update()
     {
-        countdownTimer -= Time.deltaTime;
-        TimerText.text = "TOTAL TIME LEFT: " + Mathf.Floor(countdownTimer);
-        if (countdownTimer > 0)
+        if (countdownTimer <= 1)
         {
+            Debug.Log("Game Over");
+            GameValues.score = Score;
+            SceneManager.LoadScene(endScene);
+        }
+        else if (countdownTimer > 1)
+        {
+            countdownTimer -= Time.deltaTime;
+            TimerText.text = "TOTAL TIME LEFT: " + Mathf.Floor(countdownTimer);
             if (randomEventTimer > 0) //Time for random event
             {
                 randomEventTimer -= Time.deltaTime;
@@ -602,11 +611,6 @@ public class OrderSystem : MonoBehaviour
                     randomEventTimer = Random.Range(30, 60);
                 }
             }
-        }
-        else
-        {
-            //Game is over
-            Debug.Log("Game Over");
         }
     }
 

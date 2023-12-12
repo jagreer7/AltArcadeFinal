@@ -2820,6 +2820,7 @@ MonoBehaviour:
   - {fileID: 4323309191195634316, guid: c0d928df1a98e314eb71d7b9dbcbc65c, type: 3}
   OrderOptions: []
   soup: {fileID: 1812831927}
+  endScene: EndScreen
   volume: {fileID: 519420033}
   error: {fileID: 8300000, guid: 9683847bcc2ada447be1dd30632aec56, type: 3}
   complete: {fileID: 8300000, guid: 0c7283bdee8c94d2697b620269900ab0, type: 3}
@@ -2842,9 +2843,10 @@ MonoBehaviour:
   soupObject: {fileID: 0}
   witch: {fileID: 1118144671}
   StallDelay: 1.2
+  Score: 0
   randomEventTimer: 0
   Fire: {fileID: 971063699}
-  countdownTimer: 180
+  countdownTimer: 90
   TimerText: {fileID: 1748237881}
   Stir: {fileID: 634418582}
   Action1: {fileID: 1753725207}
